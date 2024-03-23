@@ -57,5 +57,8 @@ jobs:
           password: ${{ secrets.PYPI_API_TOKEN }}
   deploy-doc:
     needs: [build]
+    permissions:
+      pages: write
+      id-token: write
     uses: './.github/workflows/deploy-doc.yml'
     secrets: inherit
