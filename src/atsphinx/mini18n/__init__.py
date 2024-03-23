@@ -7,6 +7,7 @@ from subprocess import PIPE, run
 from jinja2 import Template
 from sphinx.application import Sphinx
 from sphinx.builders.dummy import DummyBuilder
+from sphinx.config import Config
 
 __version__ = "0.0.0"
 
@@ -27,7 +28,7 @@ class Mini18nBuilderBase(DummyBuilder):
 
     def finish(self):  # noqa: D102
         self.finish_tasks.add_task(self.build_heading_content)
-        for lang in [self.app.config.language]:
+        for lang in self.app.config.mini18n_support_languages:
             self.finish_tasks.add_task(
                 build_i18_contents,
                 BuildArgs(self.app, self.name[len(self.name_prefix) :], lang),
@@ -77,8 +78,24 @@ def register_i18n_builders(app: Sphinx):
         app.add_builder(builder_class)
 
 
+def autocomplete_config(app: Sphinx, config: Config):
+    """Calucrate extension's config values."""
+    if not config.mini18n_default_language:
+        config.mini18n_default_language = config.language
+    if not config.mini18n_support_languages:
+        langs = [config.language]
+        for d in getattr(config, "locale_dirs", []):
+            d_path = Path(d)
+            for lang in d_path.glob("*"):
+                langs.append(lang.name)
+        config.mini18n_support_languages = langs
+
+
 def setup(app: Sphinx):  # noqa: D103
     register_i18n_builders(app)
+    app.add_config_value("mini18n_default_language", None, "env")
+    app.add_config_value("mini18n_support_languages", [], "env")
+    app.connect("config-inited", autocomplete_config)
     return {
         "version": __version__,
         "env_version": 1,

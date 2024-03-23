@@ -27,3 +27,6 @@ html_title = f"{project} v{release}"
 # -- Options for extensions
 # sphinx.ext.todo
 todo_include_todos = True
+
+# atsphinx.mini18n
+mini18n_default_language = "ja"
