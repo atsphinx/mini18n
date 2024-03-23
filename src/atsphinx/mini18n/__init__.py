@@ -9,7 +9,7 @@ from sphinx.application import Sphinx
 from sphinx.builders.dummy import DummyBuilder
 from sphinx.config import Config
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 package_root = Path(__file__).parent.resolve()
 

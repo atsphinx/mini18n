@@ -1,14 +1,9 @@
-v0.2.0
+v0.2.1
 ======
 
 :Date: 2024-03-24 (JST)
 
-Features
---------
+Fixes
+-----
 
-* Support deployment on sub-directory of domain
-
-Others
-------
-
-* Update PyPI metadata.
+* Work rightly that type of ``outdir`` is eigher str and path-type.

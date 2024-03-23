@@ -1,6 +1,6 @@
 [project]
 name = "atsphinx-mini18n"
-version = "0.2.0"
+version = "0.2.1"
 description = "Sphinx builder for i18n site on single deployment"
 authors = [{name = "Kazuya Takei", email = "myself@attakei.net"}]
 license = "Apache-2.0"
