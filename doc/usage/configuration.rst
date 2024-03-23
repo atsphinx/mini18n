@@ -28,6 +28,17 @@ There are some options to customize behavior.
 
    If this is ``None`` , complete to [:confval:`mini18n_default_language`].
 
+.. confval:: mini18n_basepath
+
+   :Type: ``str``
+   :Default: ``/``
+   :Exaple: ``"/mini18n/"``
+
+   This is used to build navigate URL on root document.
+   You edit it if document is deployed on sub-directory of domains.
+
+   .. note:: Value must be end with slash.
+
 Snippets
 ========
 

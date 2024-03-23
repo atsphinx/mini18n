@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atsphinx-mini18n 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 01:43+0900\n"
+"POT-Creation-Date: 2024-03-24 02:42+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Kazuya Takei <myself@attakei.net>\n"
 "Language: ja\n"
@@ -36,7 +36,7 @@ msgstr "拡張の動作をカスタマイズするための設定項目が存在
 msgid "Type"
 msgstr ""
 
-#: ../../usage/configuration.rst:12
+#: ../../usage/configuration.rst:12 ../../usage/configuration.rst:33
 msgid "``str``"
 msgstr ""
 
@@ -83,15 +83,34 @@ msgstr "i18n機能を用いてビルドする対象の言語リスト。言語�
 msgid "If this is ``None`` , complete to [:confval:`mini18n_default_language`]."
 msgstr "この値が ``None`` の場合は、 [:confval:`mini18n_default_language`]とみなします。"
 
-#: ../../usage/configuration.rst:32
+#: ../../usage/configuration.rst:34
+msgid "``/``"
+msgstr ""
+
+#: ../../usage/configuration.rst:35
+msgid "``\"/mini18n/\"``"
+msgstr ""
+
+#: ../../usage/configuration.rst:37
+msgid ""
+"This is used to build navigate URL on root document. You edit it if "
+"document is deployed on sub-directory of domains."
+msgstr "この値はドキュメントルートにアクセスした際のリダイレクト先の判定に用いられます。"
+"デプロイ先がドメインのサブディレクトリの場合に編集してください。"
+
+#: ../../usage/configuration.rst:40
+msgid "Value must be end with slash."
+msgstr "設定値はスラッシュで終わる必要があります。"
+
+#: ../../usage/configuration.rst:43
 msgid "Snippets"
 msgstr ""
 
-#: ../../usage/configuration.rst:34
+#: ../../usage/configuration.rst:45
 msgid "You can emmbed snippets in document to navigate easily."
 msgstr "言語間の遷移を用意にするために、提供されているスニペットを埋め込むことが出来ます。"
 
-#: ../../usage/configuration.rst:37
+#: ../../usage/configuration.rst:48
 msgid "Example: set into document used \"Furo\" theme"
 msgstr "例: \"Furo\"テーマに使用するコード"
 
