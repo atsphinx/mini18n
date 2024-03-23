@@ -1,6 +1,10 @@
-v0.0.0
+v0.1.0
 ======
 
-:date: 2023-05-01
+:Date: 2024-03-24 (JST)
 
-Initial commit.
+Features
+--------
+
+* First release
+* Support i18n website using ``sphinx-intl``.
