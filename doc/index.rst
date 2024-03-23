@@ -2,22 +2,15 @@
 atsphinx-mini18n
 ================
 
+.. toctree::
+   :maxdepth: 1
+
+   usage/index
+   changelogs/index
+
 Overview
 ========
 
-.. todo:: Write it
+This is sphinx extension to build simple i18n website.
 
-Installation
-============
-
-.. todo:: Write it
-
-Usage
-=====
-
-.. todo:: Write it
-
-Configuration
-=============
-
-.. todo:: Write it
+It is useful to deploy documentation into single deployment entrypoint (ex: GitHub Pages).

@@ -41,6 +41,8 @@ managed = true
 dev-dependencies = [
     "pytest ==7.*",
     "esbonio~=0.16.4",
+    "sphinx-tabs~=3.4.5",
+    "sphinx-autobuild~=2021.3.14",
 ]
 
 [tool.rye.scripts]
