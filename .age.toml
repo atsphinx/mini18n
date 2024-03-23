@@ -1,0 +1,21 @@
+current_version = "0.0.0"
+
+[[files]]
+path = "pyproject.toml"
+search = "version = \"{{current_version}}\""
+replace = "version = \"{{new_version}}\""
+
+[[files]]
+path = "src/atsphinx/mini18n.py"
+search = "__version__ = \"{{current_version}}\""
+replace = "__version__ = \"{{new_version}}\""
+
+[[files]]
+path = "src/atsphinx/mini18n.py"
+search = "__version__ = \"{{current_version}}\""
+replace = "__version__ = \"{{new_version}}\""
+
+[[files]]
+path = ".github/release-body.md"
+search = "- Changelog is https://github.com/atsphinx/mini18n/blob/v{{ current_version }}/CHANGES.rst"
+replace = "- Changelog is https://github.com/atsphinx/mini18n/blob/v{{ new_version }}/CHANGES.rst"
