@@ -8,6 +8,7 @@ release = version
 
 # -- General configuration
 extensions = [
+    "atsphinx.mini18n",
     "sphinx.ext.todo",
     "sphinx_tabs.tabs",
 ]
