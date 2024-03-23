@@ -15,6 +15,8 @@ attrs==23.2.0
     # via lsprotocol
 babel==2.14.0
     # via sphinx
+beautifulsoup4==4.12.3
+    # via furo
 cattrs==23.2.3
     # via lsprotocol
     # via pygls
@@ -31,6 +33,7 @@ esbonio==0.16.4
 exceptiongroup==1.2.0
     # via cattrs
     # via pytest
+furo==2024.1.29
 idna==3.6
     # via requests
 imagesize==1.4.1
@@ -57,6 +60,7 @@ pluggy==1.4.0
 pygls==1.3.0
     # via esbonio
 pygments==2.17.2
+    # via furo
     # via sphinx
     # via sphinx-tabs
 pyspellchecker==0.8.1
@@ -70,12 +74,18 @@ six==1.16.0
     # via livereload
 snowballstemmer==2.2.0
     # via sphinx
+soupsieve==2.5
+    # via beautifulsoup4
 sphinx==7.1.2
     # via atsphinx-mini18n
     # via esbonio
+    # via furo
     # via sphinx-autobuild
+    # via sphinx-basic-ng
     # via sphinx-tabs
 sphinx-autobuild==2021.3.14
+sphinx-basic-ng==1.0.0b2
+    # via furo
 sphinx-tabs==3.4.5
 sphinxcontrib-applehelp==1.0.4
     # via sphinx
