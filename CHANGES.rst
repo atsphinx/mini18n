@@ -1,4 +1,4 @@
-v0.1.0
+v0.2.0
 ======
 
 :Date: 2024-03-24 (JST)
@@ -6,5 +6,9 @@ v0.1.0
 Features
 --------
 
-* First release
-* Support i18n website using ``sphinx-intl``.
+* Support deployment on sub-directory of domain
+
+Others
+------
+
+* Update PyPI metadata.
