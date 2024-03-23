@@ -1,0 +1,62 @@
+[project]
+name = "atsphinx-mini18n"
+version = "0.0.0"
+description = "Sphinx builder for i18n site on single deployment"
+authors = [{name = "Kazuya Takei", email = "myself@attakei.net"}]
+license = "Apache-2.0"
+requires-python = ">= 3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Sphinx",
+    "Framework :: Sphinx :: Extension",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Documentation :: Sphinx",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Documentation",
+
+]
+readme = "README.rst"
+dependencies = [
+    "sphinx",
+]
+
+[project.urls]
+Home = "https://github.com/atsphinx/mini18n"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pytest ==7.*",
+]
+
+[tool.rye.scripts]
+setup = {chain = ["setup:sync", "setup:pre-commit"]}
+"setup:sync" = "rye sync --no-lock --all-features"
+"setup:pre-commit" = "pre-commit install"
+doc = "make -C doc"
+
+[tool.ruff.lint]
+select = ["C90", "D", "E", "F", "I", "W"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/atsphinx"]
+only-includes = ["src/atsphinx"]
