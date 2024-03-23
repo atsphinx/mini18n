@@ -15,6 +15,10 @@ extensions = [
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
+# -- Options for i18n
+gettext_compact = False
+locale_dirs = ["_locales"]
+
 # -- Options for HTML output
 html_theme = "furo"
 html_static_path = ["_static"]

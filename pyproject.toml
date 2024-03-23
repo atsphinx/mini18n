@@ -45,6 +45,7 @@ dev-dependencies = [
     "sphinx-autobuild~=2021.3.14",
     "furo~=2024.1.29",
     "beautifulsoup4~=4.12.3",
+    "sphinx-intl~=2.1.0",
 ]
 
 [tool.rye.scripts]

@@ -12,7 +12,11 @@ BUILDDIR      = _build
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help Makefile dev
+.PHONY: help Makefile dev intl
+
+intl:
+	@$(SPHINXBUILD) -M gettext "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	sphinx-intl update --language=ja
 
 dev:
 	sphinx-autobuild -b dirhtml $(SOURCEDIR) $(BUILDDIR)/dirhtml $(O)
