@@ -41,14 +41,23 @@ class Mini18nBuilderBase(DummyBuilder):
         ctx = {
             "config": self.app.config,
         }
-        out_index = self.app.outdir + "/index.html"
         out_template = Path(__file__).parent / "templates" / "mini18n" / "index.html"
         template = Template(out_template.read_text())
+        out_index = (
+            Path("/".join([self.app.outdir, "index.html"]))
+            if isinstance(self.app.outdir, str)
+            else self.app.outdir / "index.html"
+        )
         Path(out_index).write_text(template.render(ctx))
 
 
 def build_i18_contents(args: BuildArgs):
     """Run build for coufigured language."""
+    lang_out_dir = (
+        "/".join([args.app.outdir, args.lang])
+        if isinstance(args.app.outdir, str)
+        else args.app.outdir / args.lang
+    )
     cmd = [
         "sphinx-build",
         "-b",
@@ -56,7 +65,7 @@ def build_i18_contents(args: BuildArgs):
         "-d",
         args.app.doctreedir,
         args.app.srcdir,
-        "/".join([args.app.outdir, args.lang]),
+        lang_out_dir,
         "-D",
         f"language={args.lang}",
     ]
