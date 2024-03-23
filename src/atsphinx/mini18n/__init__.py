@@ -42,7 +42,7 @@ class Mini18nBuilderBase(DummyBuilder):
             "config": self.app.config,
         }
         out_index = self.app.outdir + "/index.html"
-        out_template = Path(__file__).parent / "templates" / "index.html"
+        out_template = Path(__file__).parent / "templates" / "mini18n" / "index.html"
         template = Template(out_template.read_text())
         Path(out_index).write_text(template.render(ctx))
 
