@@ -55,7 +55,7 @@ def build_i18_contents(args: BuildArgs):
         args.app.srcdir,
         "/".join([args.app.outdir, args.lang]),
         "-D",
-        f"laungage={args.lang}",
+        f"language={args.lang}",
     ]
     run(cmd, stdout=PIPE, stderr=PIPE)
 
