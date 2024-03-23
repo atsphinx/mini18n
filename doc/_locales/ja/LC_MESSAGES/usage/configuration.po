@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atsphinx-mini18n 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 01:34+0900\n"
+"POT-Creation-Date: 2024-03-24 01:43+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Kazuya Takei <myself@attakei.net>\n"
 "Language: ja\n"
@@ -77,10 +77,21 @@ msgstr ""
 msgid ""
 "Target list to build document with ``-D language=XX`` argument. You "
 "should set explicitly to build per languages."
-msgstr "i18n機能を用いてビルドする対象の言語リスト。"
-"言語ごとにビルドするためには、この項目を明示的に指定する必要があります。"
+msgstr "i18n機能を用いてビルドする対象の言語リスト。言語ごとにビルドするためには、この項目を明示的に指定する必要があります。"
 
 #: ../../usage/configuration.rst:29
 msgid "If this is ``None`` , complete to [:confval:`mini18n_default_language`]."
 msgstr "この値が ``None`` の場合は、 [:confval:`mini18n_default_language`]とみなします。"
+
+#: ../../usage/configuration.rst:32
+msgid "Snippets"
+msgstr ""
+
+#: ../../usage/configuration.rst:34
+msgid "You can emmbed snippets in document to navigate easily."
+msgstr "言語間の遷移を用意にするために、提供されているスニペットを埋め込むことが出来ます。"
+
+#: ../../usage/configuration.rst:37
+msgid "Example: set into document used \"Furo\" theme"
+msgstr "例: \"Furo\"テーマに使用するコード"
 

@@ -1,0 +1,16 @@
+<div id="atsphinx-mini18n-select-component">
+  <style>
+    div#atsphinx-mini18n-select-component div {
+      text-align: center;
+    }
+  </style>
+  <div>
+    <label for="atsphinx-mini18n-select-lang">Language</label>
+    <select name="lang" onchange="location.href=value;" id="atsphinx-mini18n-select-lang">
+      {%- for code in mini18n.support_languages %}
+      <option value="{{ pathto('../' + code + '/', 1) }}{{ pathto(pagename, 0, '.') }}" {%- if code==language %}
+        selected {%- endif %}>{{ code }}</option>
+      {%- endfor %}
+    </select>
+  </div>
+</div>

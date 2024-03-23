@@ -11,6 +11,8 @@ from sphinx.config import Config
 
 __version__ = "0.0.0"
 
+package_root = Path(__file__).parent.resolve()
+
 
 @dataclass
 class BuildArgs:
@@ -84,6 +86,15 @@ def autocomplete_config(app: Sphinx, config: Config):
         config.mini18n_default_language = config.language
     if not config.mini18n_support_languages:
         config.mini18n_support_languages = [config.mini18n_default_language]
+    if not config.html_context:
+        config.html_context = {}
+    config.html_context["mini18n"] = {
+        "support_languages": config.mini18n_support_languages,
+    }
+
+
+def get_template_dir() -> str:  # noqa: D103
+    return str(package_root / "templates")
 
 
 def setup(app: Sphinx):  # noqa: D103
