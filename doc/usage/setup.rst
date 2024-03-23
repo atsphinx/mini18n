@@ -44,7 +44,7 @@ At first, register extension into your ``conf.py`` of documentation.
 First build
 ===========
 
-After setup, documentation has new builder ``i18n-html`` and ``i18n-dirhtml``.
+After setup, documentation has new builder ``mini18n-html`` and ``mini18n-dirhtml``.
 
 Please build document by new builders.
 

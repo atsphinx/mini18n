@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atsphinx-mini18n 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-23 23:53+0900\n"
+"POT-Creation-Date: 2024-03-24 00:02+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Kazuya Takei <myself@attakei.net>\n"
 "Language: ja\n"
@@ -40,8 +40,7 @@ msgstr "PyPIで初回バージョンが公開されてからの手順です。"
 msgid ""
 "This is published on PyPI. You can install by ``pip`` command or your "
 "package management tools."
-msgstr "このSphinx拡張はPyPIで公開されています。"
-"``pip`` コマンドや利用中のパッケージ管理システムの仕組みを利用してインストール出来ます。"
+msgstr "このSphinx拡張はPyPIで公開されています。``pip`` コマンドや利用中のパッケージ管理システムの仕組みを利用してインストール出来ます。"
 
 #: ../../usage/setup.rst:17
 msgid "pip-command"
@@ -65,11 +64,10 @@ msgstr "初回ビルド"
 
 #: ../../usage/setup.rst:47
 msgid ""
-"After setup, documentation has new builder ``i18n-html`` and ``i18n-"
-"dirhtml``."
-msgstr ""
+"After setup, documentation has new builder ``mini18n-html`` and "
+"``mini18n-dirhtml``."
+msgstr "セットアップが完了すると、新しいビルダーとして ``mini18n-html`` と ``mini18n-dirhtml`` が使用可能になります。"
 
 #: ../../usage/setup.rst:49
 msgid "Please build document by new builders."
 msgstr "実際に追加されたビルダーでドキュメントを生成してみてください。"
-
