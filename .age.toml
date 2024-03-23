@@ -6,7 +6,7 @@ search = "version = \"{{current_version}}\""
 replace = "version = \"{{new_version}}\""
 
 [[files]]
-path = "src/atsphinx/mini18n.py"
+path = "src/atsphinx/mini18n/__init__.py"
 search = "__version__ = \"{{current_version}}\""
 replace = "__version__ = \"{{new_version}}\""
 
