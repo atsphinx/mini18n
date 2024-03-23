@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atsphinx-mini18n 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 00:29+0900\n"
+"POT-Creation-Date: 2024-03-24 01:34+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Kazuya Takei <myself@attakei.net>\n"
 "Language: ja\n"
@@ -24,7 +24,11 @@ msgstr ""
 msgid "Configuration"
 msgstr "設定項目"
 
-#: ../../usage/configuration.rst:5
+#: ../../usage/configuration.rst:6
+msgid "Option values"
+msgstr ""
+
+#: ../../usage/configuration.rst:8
 msgid "There are some options to customize behavior."
 msgstr "拡張の動作をカスタマイズするための設定項目が存在します。"
 
@@ -32,7 +36,7 @@ msgstr "拡張の動作をカスタマイズするための設定項目が存在
 msgid "Type"
 msgstr ""
 
-#: ../../usage/configuration.rst:9
+#: ../../usage/configuration.rst:12
 msgid "``str``"
 msgstr ""
 
@@ -40,7 +44,7 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: ../../usage/configuration.rst:10 ../../usage/configuration.rst:20
+#: ../../usage/configuration.rst:13 ../../usage/configuration.rst:23
 msgid "``None``"
 msgstr ""
 
@@ -48,39 +52,35 @@ msgstr ""
 msgid "Exaple"
 msgstr ""
 
-#: ../../usage/configuration.rst:11
+#: ../../usage/configuration.rst:14
 msgid "``\"ja\"``"
 msgstr ""
 
-#: ../../usage/configuration.rst:13
+#: ../../usage/configuration.rst:16
 msgid "This is defined lauguage to redirect when root of document."
 msgstr "生成したドキュメントルートにアクセスした際の、リダイレクト先となる言語。"
 
-#: ../../usage/configuration.rst:15
+#: ../../usage/configuration.rst:18
 msgid "If this is ``None`` , use :confval:`sphinx:language`."
 msgstr "この値が ``None`` の場合は、 :confval:`sphinx:language` を参照します。"
 
-#: ../../usage/configuration.rst:19
+#: ../../usage/configuration.rst:22
 msgid "``list[str]``"
 msgstr ""
 
-#: ../../usage/configuration.rst:21
+#: ../../usage/configuration.rst:24
 msgid "``[\"en\", \"ja\"]``"
 msgstr ""
 
-#: ../../usage/configuration.rst:23
-msgid "Target list to build document with ``-D language=XX`` argument."
+#: ../../usage/configuration.rst:26
+#, fuzzy
+msgid ""
+"Target list to build document with ``-D language=XX`` argument. You "
+"should set explicitly to build per languages."
 msgstr "i18n機能を用いてビルドする対象の言語リスト。"
+"言語ごとにビルドするためには、この項目を明示的に指定する必要があります。"
 
-#: ../../usage/configuration.rst:25
-msgid "If this is ``None`` , auto-calcurate from these:"
-msgstr "この値が ``None`` の場合は、次の項目から自動で算出します。"
-
-#: ../../usage/configuration.rst:27
-msgid ":confval:`sphinx:language`"
-msgstr ":confval:`sphinx:language` の値"
-
-#: ../../usage/configuration.rst:28
-msgid "Directory names of :confval:`sphinx:locale_dirs`"
-msgstr ":confval:`sphinx:locale_dirs` の各フォルダで管理されている言語フォルダ名"
+#: ../../usage/configuration.rst:29
+msgid "If this is ``None`` , complete to [:confval:`mini18n_default_language`]."
+msgstr "この値が ``None`` の場合は、 [:confval:`mini18n_default_language`]とみなします。"
 

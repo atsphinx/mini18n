@@ -83,12 +83,7 @@ def autocomplete_config(app: Sphinx, config: Config):
     if not config.mini18n_default_language:
         config.mini18n_default_language = config.language
     if not config.mini18n_support_languages:
-        langs = [config.language]
-        for d in getattr(config, "locale_dirs", []):
-            d_path = Path(d)
-            for lang in d_path.glob("*"):
-                langs.append(lang.name)
-        config.mini18n_support_languages = langs
+        config.mini18n_support_languages = [config.mini18n_default_language]
 
 
 def setup(app: Sphinx):  # noqa: D103

@@ -35,6 +35,7 @@ todo_include_todos = True
 
 # atsphinx.mini18n
 mini18n_default_language = "ja"
+mini18n_support_languages = ["en", "ja"]
 
 
 def setup(app):

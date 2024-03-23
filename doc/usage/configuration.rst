@@ -24,8 +24,6 @@ There are some options to customize behavior.
    :Exaple: ``["en", "ja"]``
 
    Target list to build document with ``-D language=XX`` argument.
+   You should set explicitly to build per languages.
 
-   If this is ``None`` , auto-calcurate from these:
-
-   * :confval:`sphinx:language`
-   * Directory names of :confval:`sphinx:locale_dirs`
+   If this is ``None`` , complete to [:confval:`mini18n_default_language`].
