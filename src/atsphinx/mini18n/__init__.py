@@ -1,7 +1,9 @@
 """Sphinx builder for i18n site on single deployment."""
 
+from pathlib import Path
 from subprocess import PIPE, run
 
+from jinja2 import Template
 from sphinx.application import Sphinx
 from sphinx.builders.dummy import DummyBuilder
 
@@ -15,6 +17,19 @@ class Mini18nBuilderBase(DummyBuilder):
 
     def init(self):  # noqa: D102
         self.app.connect("build-finished", self.build_i18_contents)
+
+    def finish(self):  # noqa: D102
+        self.finish_tasks.add_task(self.build_heading_content)
+
+    def build_heading_content(self):
+        """Generate root index file."""
+        ctx = {
+            "config": self.app.config,
+        }
+        out_index = self.app.outdir + "/index.html"
+        out_template = Path(__file__).parent / "templates" / "index.html"
+        template = Template(out_template.read_text())
+        Path(out_index).write_text(template.render(ctx))
 
     def build_i18_contents(self, app, err):
         """Run build for coufigured multi-languages."""

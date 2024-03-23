@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ config.html_title }}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <script>
+    const url = new URL(window.location.href);
+    if (["/", "/index.html"].includes(url.pathname)) {
+      // TODO: Set default lauguage
+      url.pathname = "/en/";
+      location.href = url.href;
+    }
+  </script>
+
+  <noscript>
+  </noscript>
+</body>
+
+</html>

@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import pytest
+from bs4 import BeautifulSoup
 from sphinx.testing.util import SphinxTestApp
 
 
@@ -17,3 +18,7 @@ def test__custom_builder(app: SphinxTestApp):
     """Test to pass."""
     app.build()
     assert (Path(app.outdir) / "en").exists()
+    index_html = Path(app.outdir) / "index.html"
+    assert index_html.exists()
+    soup = BeautifulSoup(index_html.read_text(), "html.parser")
+    assert soup.title.get_text() == app.config.html_title
