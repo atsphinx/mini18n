@@ -13,3 +13,4 @@ Please read to use ``atsphinx-mini18n`` on your documentation.
    :caption: Contents
 
    setup
+   configuration

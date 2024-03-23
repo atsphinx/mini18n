@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, Kazuya Takei
+# This file is distributed under the same license as the atsphinx-mini18n
+# package.
+# Kazuya Takei <myself@attakei.net>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: atsphinx-mini18n 0.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-24 00:29+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kazuya Takei <myself@attakei.net>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../usage/configuration.rst:3
+msgid "Configuration"
+msgstr "設定項目"
+
+#: ../../usage/configuration.rst:5
+msgid "There are some options to customize behavior."
+msgstr "拡張の動作をカスタマイズするための設定項目が存在します。"
+
+#: ../../usage/configuration.rst
+msgid "Type"
+msgstr ""
+
+#: ../../usage/configuration.rst:9
+msgid "``str``"
+msgstr ""
+
+#: ../../usage/configuration.rst
+msgid "Default"
+msgstr ""
+
+#: ../../usage/configuration.rst:10 ../../usage/configuration.rst:20
+msgid "``None``"
+msgstr ""
+
+#: ../../usage/configuration.rst
+msgid "Exaple"
+msgstr ""
+
+#: ../../usage/configuration.rst:11
+msgid "``\"ja\"``"
+msgstr ""
+
+#: ../../usage/configuration.rst:13
+msgid "This is defined lauguage to redirect when root of document."
+msgstr "生成したドキュメントルートにアクセスした際の、リダイレクト先となる言語。"
+
+#: ../../usage/configuration.rst:15
+msgid "If this is ``None`` , use :confval:`sphinx:language`."
+msgstr "この値が ``None`` の場合は、 :confval:`sphinx:language` を参照します。"
+
+#: ../../usage/configuration.rst:19
+msgid "``list[str]``"
+msgstr ""
+
+#: ../../usage/configuration.rst:21
+msgid "``[\"en\", \"ja\"]``"
+msgstr ""
+
+#: ../../usage/configuration.rst:23
+msgid "Target list to build document with ``-D language=XX`` argument."
+msgstr "i18n機能を用いてビルドする対象の言語リスト。"
+
+#: ../../usage/configuration.rst:25
+msgid "If this is ``None`` , auto-calcurate from these:"
+msgstr "この値が ``None`` の場合は、次の項目から自動で算出します。"
+
+#: ../../usage/configuration.rst:27
+msgid ":confval:`sphinx:language`"
+msgstr ":confval:`sphinx:language` の値"
+
+#: ../../usage/configuration.rst:28
+msgid "Directory names of :confval:`sphinx:locale_dirs`"
+msgstr ":confval:`sphinx:locale_dirs` の各フォルダで管理されている言語フォルダ名"
+

@@ -9,6 +9,7 @@ release = version
 # -- General configuration
 extensions = [
     "atsphinx.mini18n",
+    "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
     "sphinx_tabs.tabs",
 ]
@@ -25,8 +26,21 @@ html_static_path = ["_static"]
 html_title = f"{project} v{release}"
 
 # -- Options for extensions
+# For sphinx.ext.intersphinx
+intersphinx_mapping = {
+    "sphinx": ("https://www.sphinx-doc.org/en/master", None),
+}
 # sphinx.ext.todo
 todo_include_todos = True
 
 # atsphinx.mini18n
 mini18n_default_language = "ja"
+
+
+def setup(app):
+    app.add_object_type(
+        "confval",
+        "confval",
+        objname="configuration value",
+        indextemplate="pair: %s; configuration value",
+    )
