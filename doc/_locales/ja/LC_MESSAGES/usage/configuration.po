@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atsphinx-mini18n 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 02:42+0900\n"
+"POT-Creation-Date: 2024-03-25 03:33+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Kazuya Takei <myself@attakei.net>\n"
 "Language: ja\n"
@@ -37,6 +37,7 @@ msgid "Type"
 msgstr ""
 
 #: ../../usage/configuration.rst:12 ../../usage/configuration.rst:33
+#: ../../usage/configuration.rst:44
 msgid "``str``"
 msgstr ""
 
@@ -95,22 +96,37 @@ msgstr ""
 msgid ""
 "This is used to build navigate URL on root document. You edit it if "
 "document is deployed on sub-directory of domains."
-msgstr "この値はドキュメントルートにアクセスした際のリダイレクト先の判定に用いられます。"
-"デプロイ先がドメインのサブディレクトリの場合に編集してください。"
+msgstr "この値はドキュメントルートにアクセスした際のリダイレクト先の判定に用いられます。デプロイ先がドメインのサブディレクトリの場合に編集してください。"
 
 #: ../../usage/configuration.rst:40
 msgid "Value must be end with slash."
 msgstr "設定値はスラッシュで終わる必要があります。"
 
-#: ../../usage/configuration.rst:43
+#: ../../usage/configuration.rst:45
+msgid "``\"Language:\"``"
+msgstr ""
+
+#: ../../usage/configuration.rst
+msgid "Example"
+msgstr ""
+
+#: ../../usage/configuration.rst:46
+msgid "``\"Lang:\"``"
+msgstr ""
+
+#: ../../usage/configuration.rst:48
+msgid "This is used as label text for language select-box on snippet."
+msgstr "この値は、埋め込み用スニペットにある言語選択ボックスのラベル要素になります。"
+
+#: ../../usage/configuration.rst:51
 msgid "Snippets"
 msgstr ""
 
-#: ../../usage/configuration.rst:45
+#: ../../usage/configuration.rst:53
 msgid "You can emmbed snippets in document to navigate easily."
 msgstr "言語間の遷移を用意にするために、提供されているスニペットを埋め込むことが出来ます。"
 
-#: ../../usage/configuration.rst:48
+#: ../../usage/configuration.rst:56
 msgid "Example: set into document used \"Furo\" theme"
 msgstr "例: \"Furo\"テーマに使用するコード"
 

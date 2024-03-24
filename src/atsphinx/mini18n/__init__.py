@@ -100,6 +100,7 @@ def autocomplete_config(app: Sphinx, config: Config):
     config.html_context["mini18n"] = {
         "basepath": config.mini18n_basepath,
         "support_languages": config.mini18n_support_languages,
+        "select_lang_label": config.mini18n_select_lang_label,
     }
 
 
@@ -112,6 +113,7 @@ def setup(app: Sphinx):  # noqa: D103
     app.add_config_value("mini18n_default_language", None, "env")
     app.add_config_value("mini18n_support_languages", [], "env")
     app.add_config_value("mini18n_basepath", "/", "env")
+    app.add_config_value("mini18n_select_lang_label", "Language:", "env")
     app.connect("config-inited", autocomplete_config)
     return {
         "version": __version__,

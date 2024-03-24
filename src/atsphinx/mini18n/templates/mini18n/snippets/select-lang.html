@@ -5,7 +5,7 @@
     }
   </style>
   <div>
-    <label for="atsphinx-mini18n-select-lang">Language</label>
+    <label for="atsphinx-mini18n-select-lang">{{ mini18n.select_lang_label }}</label>
     <select name="lang" onchange="location.href=value;" id="atsphinx-mini18n-select-lang">
       {%- for code in mini18n.support_languages %}
       <option value="{{ pathto('../' + code + '/', 1) }}{{ pathto(pagename, 0, '.') }}" {%- if code==language %}

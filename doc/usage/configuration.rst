@@ -39,6 +39,14 @@ There are some options to customize behavior.
 
    .. note:: Value must be end with slash.
 
+.. confval:: mini18n_select_lang_label
+
+   :Type: ``str``
+   :Default: ``"Language:"``
+   :Example: ``"Lang:"``
+
+   This is used as label text for language select-box on snippet.
+
 Snippets
 ========
 
