@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atsphinx-mini18n 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-25 03:33+0900\n"
+"POT-Creation-Date: 2024-03-25 03:37+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Kazuya Takei <myself@attakei.net>\n"
 "Language: ja\n"
@@ -129,4 +129,8 @@ msgstr "言語間の遷移を用意にするために、提供されているス
 #: ../../usage/configuration.rst:56
 msgid "Example: set into document used \"Furo\" theme"
 msgstr "例: \"Furo\"テーマに使用するコード"
+
+#: ../../usage/configuration.rst:90
+msgid "Example: for \"PyData Sphinx Theme\""
+msgstr "例: \"PyData Sphinx Theme\"テーマに使用するコード"
 

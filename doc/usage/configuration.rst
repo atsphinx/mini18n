@@ -85,3 +85,26 @@ Example: set into document used "Furo" theme
            "sidebar/scroll-end.html",
        ]
    }
+
+Example: for "PyData Sphinx Theme"
+----------------------------------
+
+.. code-block:: python
+   :name: conf.py
+
+   from atsphinx.mini18n import get_template_dir
+
+   # Setup
+   templates_path = [
+       # ... Your templates
+       get_template_dir(),
+   ]
+
+   # Insert snippets into header.
+   html_theme_options = {
+       # Override it.
+       "navbar_start": [
+           "navbar-logo",
+           "mini18n/snippets/select-lang",
+       ],
+   }
