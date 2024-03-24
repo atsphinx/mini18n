@@ -1,9 +1,14 @@
-v0.2.1
+v0.3.0
 ======
 
-:Date: 2024-03-24 (JST)
+:Date: 2024-03-25 (JST)
 
-Fixes
------
+Features
+--------
 
-* Work rightly that type of ``outdir`` is eigher str and path-type.
+* User can customize label of select-snippet.
+
+Others
+------
+
+* Add example for "PyData Sphinx Theme".
