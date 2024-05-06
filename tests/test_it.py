@@ -22,3 +22,21 @@ def test__custom_builder(app: SphinxTestApp):
     assert index_html.exists()
     soup = BeautifulSoup(index_html.read_text(), "html.parser")
     assert soup.title.get_text() == app.config.html_title
+
+
+@pytest.mark.sphinx(
+    "mini18n-revealjs",
+    confoverrides={"extensions": ["sphinx_revealjs", "atsphinx.mini18n"]},
+)
+def test__thirdparty_builder(app: SphinxTestApp):
+    """Test to pass."""
+    app.build()
+
+
+@pytest.mark.sphinx(
+    "mini18n-revealjs",
+    confoverrides={"extensions": ["atsphinx.mini18n", "sphinx_revealjs"]},
+)
+def test__register_lazy(app: SphinxTestApp):
+    """Test to pass."""
+    app.build()

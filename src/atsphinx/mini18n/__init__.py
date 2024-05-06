@@ -109,12 +109,23 @@ def get_template_dir() -> str:  # noqa: D103
 
 
 def setup(app: Sphinx):  # noqa: D103
-    register_i18n_builders(app)
     app.add_config_value("mini18n_default_language", None, "env")
     app.add_config_value("mini18n_support_languages", [], "env")
     app.add_config_value("mini18n_basepath", "/", "env")
     app.add_config_value("mini18n_select_lang_label", "Language:", "env")
     app.connect("config-inited", autocomplete_config)
+
+    # IMPORTANT!!
+    # This is verty dirty hack to work it for any builders of third-party extensions.
+    _preload_builder = app.preload_builder
+
+    def preload_builder(buildername):
+        """Wrap for :meth:`sphinx.application.Sphinx.preload_builder`."""
+        register_i18n_builders(app)
+        _preload_builder(buildername)
+
+    app.preload_builder = preload_builder
+
     return {
         "version": __version__,
         "env_version": 1,
