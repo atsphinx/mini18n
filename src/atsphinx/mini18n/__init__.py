@@ -16,7 +16,7 @@ package_root = Path(__file__).parent.resolve()
 
 @dataclass
 class BuildArgs:
-    """Parameter class to build other langage."""
+    """Parameter class to build other language."""
 
     app: Sphinx
     builder: str
