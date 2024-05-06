@@ -31,6 +31,7 @@ colorama==0.4.6
     # via sphinx-autobuild
 docutils==0.20.1
     # via sphinx
+    # via sphinx-revealjs
     # via sphinx-tabs
 esbonio==0.16.4
 exceptiongroup==1.2.0
@@ -56,6 +57,7 @@ markupsafe==2.1.5
 packaging==24.0
     # via pytest
     # via sphinx
+    # via sphinx-revealjs
 platformdirs==4.2.0
     # via esbonio
 pluggy==1.4.0
@@ -88,11 +90,13 @@ sphinx==7.1.2
     # via sphinx-autobuild
     # via sphinx-basic-ng
     # via sphinx-intl
+    # via sphinx-revealjs
     # via sphinx-tabs
 sphinx-autobuild==2021.3.14
 sphinx-basic-ng==1.0.0b2
     # via furo
 sphinx-intl==2.1.0
+sphinx-revealjs==3.0.2
 sphinx-tabs==3.4.5
 sphinxcontrib-applehelp==1.0.4
     # via sphinx

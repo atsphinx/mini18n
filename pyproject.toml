@@ -48,6 +48,7 @@ dev-dependencies = [
     "furo~=2024.1.29",
     "beautifulsoup4~=4.12.3",
     "sphinx-intl~=2.1.0",
+    "sphinx-revealjs~=3.0.2",
 ]
 
 [tool.rye.scripts]
