@@ -1,14 +1,14 @@
-v0.3.0
+v0.3.1
 ======
 
-:Date: 2024-03-25 (JST)
+:Date: 2024-05-06 (JST)
 
-Features
---------
+Fixes
+-----
 
-* User can customize label of select-snippet.
+* It registers ``mini18n-`` builders lazy for third-party builders.
 
 Others
 ------
 
-* Add example for "PyData Sphinx Theme".
+* Fix typo
