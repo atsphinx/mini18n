@@ -44,6 +44,7 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
+          playwright install firefox
           pytest
   doc-test:
     runs-on: ubuntu-latest

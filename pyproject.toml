@@ -49,13 +49,18 @@ dev-dependencies = [
     "beautifulsoup4~=4.12.3",
     "sphinx-intl~=2.1.0",
     "sphinx-revealjs~=3.0.2",
+    "pytest-playwright~=0.5.0",
 ]
 
 [tool.rye.scripts]
-setup = {chain = ["setup:sync", "setup:pre-commit"]}
+setup = {chain = ["setup:sync", "setup:pre-commit", "setup:playwright"]}
 "setup:sync" = "rye sync --no-lock --all-features"
 "setup:pre-commit" = "pre-commit install"
+"setup:playwright" = "rye run playwright install firefox"
 doc = "make -C doc"
+
+[tool.pytest.ini_options]
+addopts = "--browser firefox"
 
 [tool.ruff.lint]
 select = ["C90", "D", "E", "F", "I", "W"]
