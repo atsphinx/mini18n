@@ -19,8 +19,11 @@ class ServerOnPytest(http.server.ThreadingHTTPServer):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             return s.connect_ex(("localhost", port)) == 0
 
-    def __init__(self, directory: Path, port_range: Tuple[int, int]):
-        """Initialize server with found usable port."""
+    def __init__(self, directory: Path, port_range: Tuple[int, int] = (49152, 60999)):
+        """Initialize server with found usable port.
+
+        Default port-range is ephemeral ports.
+        """
         self.directory = directory
         for v in range(port_range[0], port_range[1] + 1):
             if not self._is_port_in_use(v):
@@ -55,7 +58,7 @@ class ServerOnPytest(http.server.ThreadingHTTPServer):
 )
 def test__root(app: SphinxTestApp, page: Page):
     app.build()
-    with ServerOnPytest(app.outdir, (30000, 50000)) as server:
+    with ServerOnPytest(app.outdir) as server:
         url = f"http://localhost:{server.port}/"
         page.goto(url)
         time.sleep(0.5)
