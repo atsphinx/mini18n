@@ -49,13 +49,7 @@ class ServerOnPytest(http.server.ThreadingHTTPServer):
         self.shutdown()
 
 
-@pytest.mark.sphinx(
-    "mini18n-html",
-    confoverrides={
-        "mini18n_default_language": "en",
-        "mini18n_support_languages": ["en", "ja"],
-    },
-)
+@pytest.mark.sphinx("mini18n-html", testroot="e2e")
 def test__root(app: SphinxTestApp, page: Page):
     app.build()
     with ServerOnPytest(app.outdir) as server:
