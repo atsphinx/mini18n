@@ -57,3 +57,24 @@ def test__root(app: SphinxTestApp, page: Page):
         page.goto(url)
         time.sleep(0.5)
         assert page.url.endswith("/en/")
+
+
+@pytest.mark.sphinx("mini18n-html", testroot="e2e")
+def test__select_language(app: SphinxTestApp, page: Page):
+    app.build()
+    with ServerOnPytest(app.outdir) as server:
+        url = f"http://localhost:{server.port}/"
+        page.goto(url)
+        time.sleep(0.5)
+        assert page.url.endswith("/en/")
+        assert not page.context.cookies()
+        element = page.get_by_label("Language:")
+        element.select_option(label="ja")
+        element.evaluate(
+            "elm => elm.dispatchEvent(new Event('change', {bubbles: true}))"
+        )
+        time.sleep(0.5)
+        assert page.url.endswith("/ja/index.html")
+        cookies = page.context.cookies()
+        assert cookies[0]["name"] == "lang"
+        assert cookies[0]["value"] == "ja"
