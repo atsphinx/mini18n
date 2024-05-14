@@ -78,3 +78,6 @@ def test__select_language(app: SphinxTestApp, page: Page):
         cookies = page.context.cookies()
         assert cookies[0]["name"] == "lang"
         assert cookies[0]["value"] == "ja"
+        page.goto(url)
+        time.sleep(0.5)
+        assert page.url.endswith("/ja/")
