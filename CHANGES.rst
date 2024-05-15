@@ -1,14 +1,9 @@
-v0.3.1
+v0.4.0
 ======
 
-:Date: 2024-05-06 (JST)
+:Date: 2024-05-16 (JST)
 
-Fixes
------
+Features
+--------
 
-* It registers ``mini18n-`` builders lazy for third-party builders.
-
-Others
-------
-
-* Fix typo
+* Widget on document remembers selected language when users select it.
