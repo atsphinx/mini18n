@@ -8,24 +8,10 @@
 </head>
 
 <body>
-  <script>
-    const url = new URL(window.location.href);
-    const default_language = '{{ config.mini18n_default_language }}';
-    const targets = [
-      '{{ config.mini18n_basepath }}',
-      '{{ config.mini18n_basepath }}/index.html',
-    ];
-    if (targets.includes(url.pathname)) {
-      const fromCookie = document.cookie.split("; ").find(kv => kv.startsWith("lang="));
-      if (fromCookie) {
-        url.pathname = `{{ config.mini18n_basepath }}${fromCookie.split("=")[1]}/`;
-      } else {
-        url.pathname = '{{ config.mini18n_basepath }}{{ config.mini18n_default_language }}/';
-      }
-      location.href = url.href;
-    }
+  <script type="module">
+    import { Widget } from "./{{ config.mini18n_default_language }}/_static/atsphinx-mini18n.js";
+    Widget.redirectLanguageSite("{{ config.mini18n_basepath }}", "{{ config.mini18n_default_language }}");
   </script>
-
   <noscript>
   </noscript>
 </body>
