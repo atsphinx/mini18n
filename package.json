@@ -1,0 +1,14 @@
+{
+  "name": "atsphinx-mini18n",
+  "version": "0.4.0",
+  "description": "Frontend script for atsphinx-mini18n.",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0"
+}
