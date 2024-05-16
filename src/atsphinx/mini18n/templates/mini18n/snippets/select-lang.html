@@ -6,15 +6,22 @@
   </style>
   <div>
     <label for="atsphinx-mini18n-select-lang">{{ mini18n.select_lang_label }}</label>
-    <select name="lang" onchange="{
-                        const values = value.split('@@');
-                        document.cookie = `lang=${values[0]}; path=/; samesite=Strict; max-age=${60*60*24*400};`;
-                        location.href=values[1];
-                        }" id="atsphinx-mini18n-select-lang">
+    <select name="lang" id="atsphinx-mini18n-select-lang">
       {%- for code in mini18n.support_languages %}
-      <option value="{{ code }}@@{{ pathto('../' + code + '/', 1) }}{{ pathto(pagename, 0, '.') }}" {%- if code==language %}
-        selected {%- endif %}>{{ code }}</option>
+      <option
+        value="{{ code }}"
+        data-url="{{ pathto('../' + code + '/', 1) }}{{ pathto(pagename, 0, '.') }}"
+        {%- if code==language %}selected{%- endif %}
+      >
+        {{ code }}
+      </option>
       {%- endfor %}
     </select>
+    <script type="module">
+      import { Widget } from "./{{ pathto('_static/atsphinx-mini18n.js', 1) }}";
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("#atsphinx-mini18n-select-component select").addEventListener("change", Widget.redirectBySelect);
+      })
+    </script>
   </div>
 </div>
