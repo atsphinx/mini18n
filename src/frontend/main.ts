@@ -25,11 +25,20 @@ const redirectWithRemember = (lang: string, url: string) => {
  * Handlers for HTML
  */
 export namespace Widget {
+  /**
+   * Handler for changing value of selectbox.
+   */
   export const redirectBySelect = (e: Event) => {
-    //
+    if (!(e.target instanceof HTMLSelectElement)) {
+      console.error("This handler should be called only from <select>");
+      return;
+    }
     const langCode = e.target.value;
-    const langUrl = e.target.selectedOptions[0].dataset.url;
-    redirectWithRemember(langCode, langUrl);
+    const langUrl = e.target.selectedOptions[0].dataset.url ?? false;
+    if (langCode && langUrl) {
+      redirectWithRemember(langCode, langUrl);
+    }
+    console.error("Target URL is not found.");
   };
 }
 
