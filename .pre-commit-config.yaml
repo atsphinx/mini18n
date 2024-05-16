@@ -13,3 +13,8 @@ repos:
       - id: doc8
         args:
           - --max-line-length=119
+  - repo: https://github.com/biomejs/pre-commit
+    rev: ""
+    hooks:
+      - id: biome-check
+        additional_dependencies: ["@biomejs/biome@1.7.3"]

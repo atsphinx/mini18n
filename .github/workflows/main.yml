@@ -35,6 +35,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - uses: volta-cli/action@v4
+      - name: Build static files
+        run: |
+          npm i
+          npm run build
       - name: Configure venv
         run: |
           pip install uv
@@ -69,8 +74,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version-file: '.python-version'
+      - uses: volta-cli/action@v4
       - name: Build package
         run: |
+          npm i
+          npm run build
           pip install hatch
           hatch build
           ls -l dist

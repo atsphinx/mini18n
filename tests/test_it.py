@@ -11,6 +11,7 @@ from sphinx.testing.util import SphinxTestApp
 def test__it(app: SphinxTestApp):
     """Test to pass."""
     app.build()
+    assert (app.outdir / "_static/atsphinx-mini18n.js").exists()
 
 
 @pytest.mark.sphinx("mini18n-html")

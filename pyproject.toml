@@ -53,10 +53,11 @@ dev-dependencies = [
 ]
 
 [tool.rye.scripts]
-setup = {chain = ["setup:sync", "setup:pre-commit", "setup:playwright"]}
+setup = {chain = ["setup:sync", "setup:pre-commit", "setup:playwright", "setup:frontend"]}
 "setup:sync" = "rye sync --no-lock --all-features"
 "setup:pre-commit" = "pre-commit install"
 "setup:playwright" = "rye run playwright install firefox"
+"setup:frontend" = "npm i"
 doc = "make -C doc"
 age = "python tools/run_age.py"
 

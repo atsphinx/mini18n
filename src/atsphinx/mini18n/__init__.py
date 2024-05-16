@@ -108,12 +108,23 @@ def get_template_dir() -> str:  # noqa: D103
     return str(package_root / "templates")
 
 
+def register_extra_static_files(app: Sphinx):
+    """Append JavaScript file for package."""
+    if app.builder.format != "html":
+        return
+    _static_path = getattr(app.config, "html_static_path", [])
+    _static_path.append(str(package_root / "_static"))
+    _js_files = getattr(app.config, "html_js_files", [])
+    _js_files.append("atsphinx-mini18n.js")
+
+
 def setup(app: Sphinx):  # noqa: D103
     app.add_config_value("mini18n_default_language", None, "env")
     app.add_config_value("mini18n_support_languages", [], "env")
     app.add_config_value("mini18n_basepath", "/", "env")
     app.add_config_value("mini18n_select_lang_label", "Language:", "env")
     app.connect("config-inited", autocomplete_config)
+    app.connect("builder-inited", register_extra_static_files)
 
     # IMPORTANT!!
     # This is verty dirty hack to work it for any builders of third-party extensions.

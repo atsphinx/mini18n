@@ -6,9 +6,18 @@
     "doc": "doc",
     "test": "tests"
   },
-  "devDependencies": {},
-  "scripts": {},
+  "devDependencies": {
+    "@biomejs/biome": "^1.7.3",
+    "esbuild": "^0.21.3",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "build": "node ./esbuild.mjs"
+  },
   "keywords": [],
   "author": "",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "volta": {
+    "node": "20.13.1"
+  }
 }
