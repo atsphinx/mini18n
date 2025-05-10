@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    "github>attakei/workspace-configs//renovate/lefthook",
+    "github>attakei/workspace-configs//renovate/taskfile",
+  ],
+  "enabledManagers": [
+    "github-actions",
+    "mise",
+    "custom.jsonata",
+  ],
+}
