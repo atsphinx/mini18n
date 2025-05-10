@@ -21,7 +21,7 @@ parser.add_argument("age_args", nargs="+")  # All arguments are passed to age-cl
 def main(args: argparse.Namespace):  # noqa: D103
     # Move changelog into document to use as old logs.
     changes_rst = project_root / "CHANGES.rst"
-    shutil.move(changes_rst, archive_to / f"{version}.rst")
+    shutil.move(str(changes_rst), archive_to / f"{version}.rst")
     changes_rst.write_text("TEMPLATE")
     # Run age.
     run(["age"] + args.age_args)

@@ -52,7 +52,7 @@ class ServerOnPytest(http.server.ThreadingHTTPServer):
 @pytest.mark.sphinx("mini18n-html", testroot="e2e")
 def test__root(app: SphinxTestApp, page: Page):
     app.build()
-    with ServerOnPytest(app.outdir) as server:
+    with ServerOnPytest(app.outdir) as server:  # type: ignore[arg-type]
         url = f"http://localhost:{server.port}/"
         page.goto(url)
         time.sleep(0.5)
@@ -62,7 +62,7 @@ def test__root(app: SphinxTestApp, page: Page):
 @pytest.mark.sphinx("mini18n-html", testroot="e2e")
 def test__select_language(app: SphinxTestApp, page: Page):
     app.build()
-    with ServerOnPytest(app.outdir) as server:
+    with ServerOnPytest(app.outdir) as server:  # type: ignore[arg-type]
         url = f"http://localhost:{server.port}/"
         page.goto(url)
         time.sleep(0.5)

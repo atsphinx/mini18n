@@ -9,18 +9,21 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  TASK_X_REMOTE_TASKFILES: 1
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version-file: '.python-version'
-      - name: Lint by pre-commit
+      - uses: 'jdx/mise-action@v2'
+      - name: Set up workspace
         run: |
-          pip install pre-commit
-          pre-commit run --all-files
+          uv sync --all-extras --all-groups
+      - name: Lint by lefthook
+        run: |
+          lefthook run pre-commit --all-files
   source-test:
     runs-on: ubuntu-latest
     strategy:
@@ -32,45 +35,33 @@ jobs:
             sphinx-version: '7.2.*'
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Configure venv
+      - uses: 'jdx/mise-action@v2'
+      - name: 'Set up workspace'
         run: |
-          pip install uv
-          uv venv
-          uv pip install -r requirements-dev.lock
+          echo '${{ matrix.python-version }}' > .python-version
+          uv sync --all-extras --all-groups
           uv pip install 'sphinx==${{ matrix.sphinx-version }}'
-      - name: Run tests
+          uv run playwright install firefox
+      - name: 'Run tests'
         run: |
-          source .venv/bin/activate
-          playwright install firefox
-          pytest
+          uv run pytest
   doc-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version-file: '.python-version'
-      - name: Configure venv
+      - uses: 'jdx/mise-action@v2'
+      - name: 'Set up workspace'
         run: |
-          pip install uv
-          uv venv
-          uv pip install -r requirements-dev.lock
-      - name: Run tests
+          uv sync --all-extras --all-groups
+      - name: 'Run tests'
         run: |
-          source .venv/bin/activate
-          make -C doc linkcheck dirhtml
+          task --yes docs:build-linkcheck docs:build-dirhtml
   build-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version-file: '.python-version'
+      - uses: 'jdx/mise-action@v2'
       - name: Build package
         run: |
-          pip install hatch
-          hatch build
+          uv build
           ls -l dist

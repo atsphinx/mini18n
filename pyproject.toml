@@ -34,13 +34,8 @@ Repository = "https://github.com/atsphinx/mini18n"
 Issues = "https://github.com/atsphinx/mini18n/issues"
 Document = "https://atsphinx.github.io/mini18n/"
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[tool.rye]
-managed = true
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "pytest ==7.*",
     "esbonio~=0.16.4",
     "sphinx-tabs~=3.4.5",
@@ -50,15 +45,19 @@ dev-dependencies = [
     "sphinx-intl~=2.1.0",
     "sphinx-revealjs~=3.0.2",
     "pytest-playwright~=0.5.0",
+    "ruff>=0.11.9",
+    "mypy>=1.14.1",
+    "doc8>=1.1.2",
+    "types-beautifulsoup4>=4.12.0.20241020",
 ]
 
-[tool.rye.scripts]
-setup = {chain = ["setup:sync", "setup:pre-commit", "setup:playwright"]}
-"setup:sync" = "rye sync --no-lock --all-features"
-"setup:pre-commit" = "pre-commit install"
-"setup:playwright" = "rye run playwright install firefox"
-doc = "make -C doc"
-age = "python tools/run_age.py"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.mypy]
+explicit_package_bases = true
+mypy_path = "src"
 
 [tool.pytest.ini_options]
 addopts = "--browser firefox"
@@ -70,6 +69,7 @@ select = ["C90", "D", "E", "F", "I", "W"]
 convention = "pep257"
 
 [tool.doc8]
+max-line-length = 119
 ignore = ["D000"]
 
 [tool.hatch.metadata]
