@@ -15,6 +15,7 @@ tasks:
     desc: 'Setup workspace'
     cmds:
       - 'uv sync --frozen --all-extras'
+      - 'uv run playwright install firefox'
       - 'lefthook install'
   verify:
     desc: 'Verify environment by all procs'
