@@ -50,6 +50,6 @@ Please build document by new builders.
 
 .. code:: console
 
-   $ make i18n-html
-   $ ls _build/i18n-html
+   $ make mini18n-html
+   $ ls _build/mini18n-html
    index.html en
