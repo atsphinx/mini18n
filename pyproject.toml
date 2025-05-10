@@ -55,14 +55,6 @@ dev = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.rye.scripts]
-setup = {chain = ["setup:sync", "setup:pre-commit", "setup:playwright"]}
-"setup:sync" = "rye sync --no-lock --all-features"
-"setup:pre-commit" = "pre-commit install"
-"setup:playwright" = "rye run playwright install firefox"
-doc = "make -C doc"
-age = "python tools/run_age.py"
-
 [tool.pytest.ini_options]
 addopts = "--browser firefox"
 
