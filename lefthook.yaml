@@ -20,9 +20,10 @@ pre-commit:
             run: '{run_python} ruff format {staged_files}'
           - name: lint
             run: '{run_python} ruff check --fix {staged_files}'
-  # commands:
-  #   mypy:
-  #     glob: '*.py'
-  #     exclude:
-  #       - '**/conf.py'
-  #     run: '{run_python} mypy {staged_files}'
+  commands:
+    mypy:
+      glob: '*.py'
+      exclude:
+        - '**/conf.py'
+        - 'src/atsphinx/mini18n/__init__.py'
+      run: '{run_python} mypy {staged_files}'

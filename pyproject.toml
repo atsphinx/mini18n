@@ -55,6 +55,10 @@ dev = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.mypy]
+explicit_package_bases = true
+mypy_path = "src"
+
 [tool.pytest.ini_options]
 addopts = "--browser firefox"
 

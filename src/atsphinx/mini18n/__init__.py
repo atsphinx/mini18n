@@ -92,11 +92,11 @@ def register_i18n_builders(app: Sphinx):
 def autocomplete_config(app: Sphinx, config: Config):
     """Calucrate extension's config values."""
     if not config.mini18n_default_language:
-        config.mini18n_default_language = config.language
+        config.mini18n_default_language = config.language  # type: ignore[attr-defined]
     if not config.mini18n_support_languages:
-        config.mini18n_support_languages = [config.mini18n_default_language]
+        config.mini18n_support_languages = [config.mini18n_default_language]  # type: ignore[attr-defined]
     if not config.html_context:
-        config.html_context = {}
+        config.html_context = {}  # type: ignore[attr-defined]
     config.html_context["mini18n"] = {
         "basepath": config.mini18n_basepath,
         "support_languages": config.mini18n_support_languages,
@@ -124,7 +124,7 @@ def setup(app: Sphinx):  # noqa: D103
         register_i18n_builders(app)
         _preload_builder(buildername)
 
-    app.preload_builder = preload_builder
+    app.preload_builder = preload_builder  # type: ignore[method-assign]
 
     return {
         "version": __version__,
