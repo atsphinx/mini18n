@@ -148,7 +148,7 @@ def setup(app: Sphinx):  # noqa: D103
     app.connect("html-page-context", bind_pathto_with_lang)
 
     # IMPORTANT!!
-    # This is verty dirty hack to work it for any builders of third-party extensions.
+    # This is very dirty hack to work it for any builders of third-party extensions.
     _preload_builder = app.preload_builder
 
     def preload_builder(buildername):
