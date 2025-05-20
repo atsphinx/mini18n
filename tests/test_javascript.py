@@ -59,6 +59,16 @@ def test__root(app: SphinxTestApp, page: Page):
         assert page.url.endswith("/en/")
 
 
+@pytest.mark.sphinx("mini18n-dirhtml", testroot="e2e")
+def test__root_dirhtml(app: SphinxTestApp, page: Page):
+    app.build()
+    with ServerOnPytest(app.outdir) as server:  # type: ignore[arg-type]
+        url = f"http://localhost:{server.port}/"
+        page.goto(url)
+        time.sleep(0.5)
+        assert page.url.endswith("/en/")
+
+
 @pytest.mark.sphinx("mini18n-html", testroot="e2e")
 def test__select_language(app: SphinxTestApp, page: Page):
     app.build()
@@ -81,3 +91,59 @@ def test__select_language(app: SphinxTestApp, page: Page):
         page.goto(url)
         time.sleep(0.5)
         assert page.url.endswith("/ja/")
+
+
+@pytest.mark.sphinx("mini18n-html", testroot="e2e")
+def test__select_language_sub(app: SphinxTestApp, page: Page):
+    app.build()
+    with ServerOnPytest(app.outdir) as server:  # type: ignore[arg-type]
+        url = f"http://localhost:{server.port}"
+        page.goto(f"{url}/en/sub.html")
+        time.sleep(0.5)
+        element = page.get_by_label("Language:")
+        element.select_option(label="ja")
+        element.evaluate(
+            "elm => elm.dispatchEvent(new Event('change', {bubbles: true}))"
+        )
+        time.sleep(0.5)
+        assert page.url.endswith("/ja/sub.html")
+
+
+@pytest.mark.sphinx("mini18n-dirhtml", testroot="e2e")
+def test__select_language_dirhtml(app: SphinxTestApp, page: Page):
+    app.build()
+    with ServerOnPytest(app.outdir) as server:  # type: ignore[arg-type]
+        url = f"http://localhost:{server.port}/"
+        page.goto(url)
+        time.sleep(0.5)
+        assert page.url.endswith("/en/")
+        assert not page.context.cookies()
+        element = page.get_by_label("Language:")
+        element.select_option(label="ja")
+        element.evaluate(
+            "elm => elm.dispatchEvent(new Event('change', {bubbles: true}))"
+        )
+        time.sleep(0.5)
+        assert page.url.endswith("/ja/")
+        cookies = page.context.cookies()
+        assert cookies[0]["name"] == "lang"
+        assert cookies[0]["value"] == "ja"
+        page.goto(url)
+        time.sleep(0.5)
+        assert page.url.endswith("/ja/")
+
+
+@pytest.mark.sphinx("mini18n-dirhtml", testroot="e2e")
+def test__select_language_dirhtml_sub(app: SphinxTestApp, page: Page):
+    app.build()
+    with ServerOnPytest(app.outdir) as server:  # type: ignore[arg-type]
+        url = f"http://localhost:{server.port}"
+        page.goto(f"{url}/en/sub/")
+        time.sleep(0.5)
+        element = page.get_by_label("Language:")
+        element.select_option(label="ja")
+        element.evaluate(
+            "elm => elm.dispatchEvent(new Event('change', {bubbles: true}))"
+        )
+        time.sleep(0.5)
+        assert page.url.endswith("/ja/sub/")
