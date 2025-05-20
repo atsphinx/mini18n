@@ -12,12 +12,12 @@ replace = "__version__ = \"{{new_version}}\""
 
 [[files]]
 path = "CHANGES.rst"
-search = "TEMPLATE"
+search = "v{{current_version}}"
 replace = """
 v{{new_version}}
-={% for _ in new_version %}={% endfor %}
+={{#sameLengthChars}}=@{{new_version}}{{/sameLengthChars}}
 
-:Date: {{ now|date }} (JST)
+:Date: {{ nowFormat.dateISO }} (Asia/Tokyo)
 
 Breaking changes
 ----------------
@@ -30,7 +30,8 @@ Fixes
 
 Others
 ------
-"""
+
+v{{current_version}}"""
 
 [[files]]
 path = ".github/release-body.md"
