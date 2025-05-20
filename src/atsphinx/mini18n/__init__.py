@@ -1,14 +1,20 @@
 """Sphinx builder for i18n site on single deployment."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 from pathlib import Path
 from subprocess import PIPE, run
+from typing import TYPE_CHECKING
 
-from docutils import nodes
 from jinja2 import Template
-from sphinx.application import Sphinx
 from sphinx.builders.dummy import DummyBuilder
-from sphinx.config import Config
+
+if TYPE_CHECKING:
+    from docutils import nodes
+    from sphinx.application import Sphinx
+    from sphinx.config import Config
+
 
 __version__ = "0.4.0"
 
