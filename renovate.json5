@@ -11,4 +11,17 @@
     "mise",
     "custom.jsonata",
   ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["attakei/workspace-configs"],
+      "groupName": "workspace-configs",
+      "matchUpdateTypes": ["major", "minor"],
+      "enabled": true,
+    },
+    {
+      "matchPackageNames": ["attakei/workspace-configs"],
+      "matchUpdateTypes": ["patch"],
+      "enabled": false,
+    },
+  ],
 }
