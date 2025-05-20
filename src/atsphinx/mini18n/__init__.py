@@ -111,6 +111,7 @@ def autocomplete_config(app: Sphinx, config: Config):
     }
 
 
+# TODO: Find other api to register function.
 def bind_pathto_with_lang(
     app: Sphinx,
     pagename: str,
