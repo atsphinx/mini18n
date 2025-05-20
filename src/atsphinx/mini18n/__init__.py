@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     from sphinx.config import Config
 
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 
 package_root = Path(__file__).parent.resolve()
 
