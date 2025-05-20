@@ -12,7 +12,7 @@
                         location.href=values[1];
                         }" id="atsphinx-mini18n-select-lang">
       {%- for code in mini18n.support_languages %}
-      <option value="{{ code }}@@{{ pathto('../' + code + '/', 1) }}{{ pathto(pagename, 0, '.') }}" {%- if code==language %}
+      <option value="{{ code }}@@{{ pathto_with_lang(pagename, code) }}" {%- if code==language %}
         selected {%- endif %}>{{ code }}</option>
       {%- endfor %}
     </select>

@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from subprocess import PIPE, run
 
+from docutils import nodes
 from jinja2 import Template
 from sphinx.application import Sphinx
 from sphinx.builders.dummy import DummyBuilder
@@ -104,6 +105,29 @@ def autocomplete_config(app: Sphinx, config: Config):
     }
 
 
+def bind_pathto_with_lang(
+    app: Sphinx,
+    pagename: str,
+    templatename: str,
+    context: dict,
+    doctree: nodes.document,
+):
+    """Add template functions into context."""
+
+    def pathto_with_lang(otheruri: str, lang: str) -> str:
+        """Create path info to specified page and language.
+
+        :param otheruri: Target pagename of document.
+        :param lang: Target language that is defined on ``mini18n_support_languages``.
+        :returns: URL to page as absolute path.
+        """
+        pathto = app.builder.get_target_uri(otheruri)
+        return f"{context['mini18n']['basepath']}{lang}/{pathto}"
+
+    context["pathto_with_lang"] = pathto_with_lang
+    pass
+
+
 def get_template_dir() -> str:  # noqa: D103
     return str(package_root / "templates")
 
@@ -114,6 +138,7 @@ def setup(app: Sphinx):  # noqa: D103
     app.add_config_value("mini18n_basepath", "/", "env")
     app.add_config_value("mini18n_select_lang_label", "Language:", "env")
     app.connect("config-inited", autocomplete_config)
+    app.connect("html-page-context", bind_pathto_with_lang)
 
     # IMPORTANT!!
     # This is verty dirty hack to work it for any builders of third-party extensions.
