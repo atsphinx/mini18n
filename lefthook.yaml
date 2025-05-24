@@ -4,26 +4,7 @@ templates:
 
 remotes:
   - git_url: 'https://github.com/attakei/workspace-configs'
-    ref: 'v0.2.0'
+    ref: 'v0.3.0'
     configs:
+      - 'projects/python-astral/lefthook.yaml'
       - 'projects/sphinx-doc/lefthook.yaml'
-
-pre-commit:
-  parallel: true
-  jobs:
-    - name: 'Ruff'
-      glob: '*.py'
-      group:
-        parallel: false
-        jobs:
-          - name: format
-            run: '{run_python} ruff format {staged_files}'
-          - name: lint
-            run: '{run_python} ruff check --fix {staged_files}'
-  commands:
-    ty:
-      glob: '*.py'
-      exclude:
-        - '**/conf.py'
-        - 'src/atsphinx/mini18n/__init__.py'
-      run: '{run_python} ty check {staged_files}'
