@@ -3,7 +3,7 @@
 from pathlib import Path
 
 import pytest
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 from sphinx.testing.util import SphinxTestApp
 
 
@@ -21,7 +21,7 @@ def test__custom_builder(app: SphinxTestApp):
     index_html = Path(app.outdir) / "index.html"
     assert index_html.exists()
     soup = BeautifulSoup(index_html.read_text(), "html.parser")
-    assert soup.title
+    assert isinstance(soup.title, Tag)
     assert soup.title.get_text() == app.config.html_title
 
 
