@@ -63,7 +63,7 @@ def build_i18_contents(args: BuildArgs):
     lang_out_dir = (
         "/".join([args.app.outdir, args.lang])
         if isinstance(args.app.outdir, str)
-        else args.app.outdir / args.lang
+        else args.app.outdir / args.lang  # type: ignore[unsupported-operator]
     )
     cmd = [
         "sphinx-build",
