@@ -17,9 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: 'aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0'
-        with:
-          aqua_version: v2.43.1
+      - uses: './.github/actions/setup-aqua'
       - name: Set up workspace
         run: |
           uv sync --all-extras --all-groups
@@ -51,9 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: 'aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0'
-        with:
-          aqua_version: v2.43.1
+      - uses: './.github/actions/setup-aqua'
       - name: 'Set up workspace'
         run: |
           uv sync --all-extras --all-groups
@@ -64,9 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: 'aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0'
-        with:
-          aqua_version: v2.43.1
+      - uses: './.github/actions/setup-aqua'
       - name: Build package
         run: |
           uv build

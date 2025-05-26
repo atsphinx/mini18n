@@ -18,7 +18,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: 'jdx/mise-action@v2'
+      - uses: './.github/actions/setup-aqua'
       - name: Set up workspace
         run: |
           uv sync --frozen
