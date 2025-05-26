@@ -17,7 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: 'jdx/mise-action@v2'
+      - uses: 'aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0'
+        with:
+          aqua_version: v2.43.1
       - name: Set up workspace
         run: |
           uv sync --all-extras --all-groups
@@ -35,7 +37,9 @@ jobs:
             sphinx-version: '7.2.*'
     steps:
       - uses: actions/checkout@v4
-      - uses: 'jdx/mise-action@v2'
+      - uses: 'aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0'
+        with:
+          aqua_version: v2.43.1
       - name: 'Set up workspace'
         run: |
           echo '${{ matrix.python-version }}' > .python-version
@@ -49,7 +53,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: 'jdx/mise-action@v2'
+      - uses: 'aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0'
+        with:
+          aqua_version: v2.43.1
       - name: 'Set up workspace'
         run: |
           uv sync --all-extras --all-groups
@@ -60,7 +66,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: 'jdx/mise-action@v2'
+      - uses: 'aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0'
+        with:
+          aqua_version: v2.43.1
       - name: Build package
         run: |
           uv build
