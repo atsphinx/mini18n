@@ -19,6 +19,6 @@ registries:
 packages:
 - name: astral-sh/uv@0.7.8
 - name: evilmartians/lefthook@v1.11.13
-- name: go-task/task@v3.43.3
+- name: go-task/task@v3.45.5
 - name: attakei/age@v0.10.2
   registry: attakei/age
