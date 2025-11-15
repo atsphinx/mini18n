@@ -1,5 +1,6 @@
 """Standard tests."""
 
+import shutil
 from pathlib import Path
 
 import pytest
@@ -23,6 +24,16 @@ def test__custom_builder(app: SphinxTestApp):
     soup = BeautifulSoup(index_html.read_text(), "html.parser")
     assert isinstance(soup.title, Tag)
     assert soup.title.get_text() == app.config.html_title
+
+
+@pytest.mark.sphinx(
+    "mini18n-html", freshenv=True, confoverrides={"mini18n_build_style": "nested"}
+)
+def test__nested_style(app: SphinxTestApp):
+    """Test to pass."""
+    shutil.rmtree(app.outdir)  # Refresh outputs
+    app.build()
+    assert (Path(app.outdir) / "en").exists() is False
 
 
 @pytest.mark.sphinx(

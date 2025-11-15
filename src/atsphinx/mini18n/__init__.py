@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field, fields
 from pathlib import Path
 from subprocess import PIPE, run
-from typing import TYPE_CHECKING, ClassVar
+from typing import TYPE_CHECKING, ClassVar, Literal
 
 from jinja2 import Template
 from sphinx.builders.dummy import DummyBuilder
@@ -28,6 +28,7 @@ class BuildArgs:
     app: Sphinx
     builder: str
     lang: str
+    use_lang_dir: bool = True
 
 
 @dataclass
@@ -36,6 +37,7 @@ class ExtensionConfig:
 
     PREFIX: ClassVar[str] = "mini18n_"
 
+    build_style: Literal["flat", "nested"] = "flat"
     default_language: str | None = None
     support_languages: list[str] = field(default_factory=list)
     basepath: str = "/"
@@ -59,7 +61,8 @@ class Mini18nBuilderBase(DummyBuilder):
 
     def finish(self):  # noqa: D102
         config = ExtensionConfig.from_sphinx(self.config)
-        self.finish_tasks.add_task(self.build_heading_content)
+        if config.build_style == "flat":
+            self.finish_tasks.add_task(self.build_heading_content)
         if config.default_language:
             self.finish_tasks.add_task(
                 build_i18_contents,
@@ -67,6 +70,7 @@ class Mini18nBuilderBase(DummyBuilder):
                     self.app,
                     self.name[len(self.name_prefix) :],
                     config.default_language,
+                    config.build_style == "flat",
                 ),
             )
         for lang in config.support_languages:
@@ -94,11 +98,14 @@ class Mini18nBuilderBase(DummyBuilder):
 
 def build_i18_contents(args: BuildArgs):
     """Run build for coufigured language."""
-    lang_out_dir = (
-        "/".join([args.app.outdir, args.lang])
-        if isinstance(args.app.outdir, str)
-        else args.app.outdir / args.lang  # type: ignore[unsupported-operator]
-    )
+    if args.use_lang_dir:
+        lang_out_dir = (
+            "/".join([args.app.outdir, args.lang])
+            if isinstance(args.app.outdir, str)
+            else args.app.outdir / args.lang  # type: ignore[unsupported-operator]
+        )
+    else:
+        lang_out_dir = args.app.outdir
     cmd = [
         "sphinx-build",
         "-b",
@@ -174,6 +181,7 @@ def get_template_dir() -> str:  # noqa: D103
 
 
 def setup(app: Sphinx):  # noqa: D103
+    app.add_config_value("mini18n_build_style", "flat", "env")
     app.add_config_value("mini18n_default_language", None, "env")
     app.add_config_value("mini18n_support_languages", [], "env")
     app.add_config_value("mini18n_basepath", "/", "env")
