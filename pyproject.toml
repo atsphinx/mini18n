@@ -4,7 +4,7 @@ version = "0.4.1"
 description = "Sphinx builder for i18n site on single deployment"
 authors = [{name = "Kazuya Takei", email = "myself@attakei.net"}]
 license = "Apache-2.0"
-requires-python = ">= 3.8"
+requires-python = ">= 3.10"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Framework :: Sphinx",
@@ -14,8 +14,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
