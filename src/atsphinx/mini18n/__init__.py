@@ -161,6 +161,7 @@ def bind_pathto_with_lang(
     doctree: nodes.document,
 ):
     """Add template functions into context."""
+    config = ExtensionConfig.from_sphinx(app.config)
 
     def pathto_with_lang(otheruri: str, lang: str) -> str:
         """Create path info to specified page and language.
@@ -169,9 +170,14 @@ def bind_pathto_with_lang(
         :param lang: Target language that is defined on ``mini18n_support_languages``.
         :returns: URL to page as absolute path.
         """
+        if config.build_style == "nested" and lang == config.default_language:
+            lang = ""
+        else:
+            lang = f"{lang}/"
         pathto = app.builder.get_target_uri(otheruri)
-        return f"{context['mini18n']['basepath']}{lang}/{pathto}"
+        return f"{context['mini18n']['basepath']}{lang}{pathto}"
 
+    print(app.config.language, config)
     context["pathto_with_lang"] = pathto_with_lang
     pass
 

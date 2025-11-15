@@ -147,3 +147,31 @@ def test__select_language_dirhtml_sub(app: SphinxTestApp, page: Page):
         )
         time.sleep(0.5)
         assert page.url.endswith("/ja/sub/")
+
+
+@pytest.mark.sphinx(
+    "mini18n-dirhtml",
+    testroot="e2e-nested",
+)
+def test__nested_style(app: SphinxTestApp, page: Page):
+    app.build()
+    with ServerOnPytest(app.outdir) as server:  # type: ignore[arg-type]
+        url = f"http://localhost:{server.port}/"
+        page.goto(url)
+        time.sleep(0.5)
+        assert not page.url.endswith("/en/")
+        assert not page.context.cookies()
+        element = page.get_by_label("Language:")
+        element.select_option(label="ja")
+        element.evaluate(
+            "elm => elm.dispatchEvent(new Event('change', {bubbles: true}))"
+        )
+        time.sleep(0.5)
+        assert page.url.endswith("/ja/")
+        element = page.get_by_label("Language:")
+        element.select_option(label="en")
+        element.evaluate(
+            "elm => elm.dispatchEvent(new Event('change', {bubbles: true}))"
+        )
+        page.wait_for_load_state("networkidle")
+        assert page.url == f"http://localhost:{server.port}/"
