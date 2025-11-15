@@ -28,19 +28,21 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
-        sphinx-version: ['6.*', '7.*', '7.1.*', '7.2.*']
-        exclude:
-          - python-version: '3.8'
-            sphinx-version: '7.2.*'
+        python-version: ['3.10', '3.11', '3.12', '3.13']
+        workspace: ['locked', 'latest']
     steps:
       - uses: actions/checkout@v4
       - uses: './.github/actions/setup-aqua'
+      - name: Set up Python ${{ matrix.python-version }}
+        run: 'echo ${{ matrix.python-version }} > .python-version'
+      - name: 'Configure env as locked deps by uv.lock'
+        run: 'uv sync --frozen'
+        if: ${{ matrix.workspace == 'locked'}}
+      - name: 'Configure env as latest deps on PyPI'
+        run: 'uv sync -U'
+        if: ${{ matrix.workspace == 'latest'}}
       - name: 'Set up workspace'
         run: |
-          echo '${{ matrix.python-version }}' > .python-version
-          uv sync --all-extras --all-groups
-          uv pip install 'sphinx==${{ matrix.sphinx-version }}'
           uv run playwright install firefox
       - name: 'Run tests'
         run: |
