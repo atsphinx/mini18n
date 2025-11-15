@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field, fields
 from pathlib import Path
 from subprocess import PIPE, run
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, ClassVar
 
 from jinja2 import Template
 from sphinx.builders.dummy import DummyBuilder
@@ -30,14 +30,48 @@ class BuildArgs:
     lang: str
 
 
+@dataclass
+class ExtensionConfig:
+    """Config for this extension from Sphinx config object."""
+
+    PREFIX: ClassVar[str] = "mini18n_"
+
+    default_language: str | None = None
+    support_languages: list[str] = field(default_factory=list)
+    basepath: str = "/"
+    select_lang_label: str = "Language:"
+
+    @classmethod
+    def from_sphinx(cls, config: Config) -> "ExtensionConfig":
+        """Create from Sphinx config object."""
+        kv = {
+            f.name: getattr(config, f"{cls.PREFIX}{f.name}")
+            for f in fields(cls)
+            if hasattr(config, f"{cls.PREFIX}{f.name}")
+        }
+        return cls(**kv)
+
+
 class Mini18nBuilderBase(DummyBuilder):
     """Abstract bridge builder to build multi-language settings."""
 
     name_prefix = "mini18n-"
 
     def finish(self):  # noqa: D102
+        config = ExtensionConfig.from_sphinx(self.config)
         self.finish_tasks.add_task(self.build_heading_content)
-        for lang in self.app.config.mini18n_support_languages:
+        if config.default_language:
+            self.finish_tasks.add_task(
+                build_i18_contents,
+                BuildArgs(
+                    self.app,
+                    self.name[len(self.name_prefix) :],
+                    config.default_language,
+                ),
+            )
+        for lang in config.support_languages:
+            if lang == config.default_language:
+                continue
             self.finish_tasks.add_task(
                 build_i18_contents,
                 BuildArgs(self.app, self.name[len(self.name_prefix) :], lang),
