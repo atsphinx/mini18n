@@ -12,11 +12,11 @@ There are some options to customize behavior.
     :Type: ``str`` ( ``"flat"`` or ``"nested"`` )
     :Default: ``"flat"``
     :Example: ``"nested""`
-    
+
     Folder structure of output by builder.
-    
+
     For detail, please see :doc:`./build-style`.
-    
+
 
 .. confval:: mini18n_default_language
 

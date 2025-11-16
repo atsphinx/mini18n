@@ -34,7 +34,10 @@ class ServerOnPytest(http.server.ThreadingHTTPServer):
 
     def finish_request(self, request, client_address):  # noqa: D102
         self.RequestHandlerClass(
-            request, client_address, self, directory=self.directory
+            request,
+            client_address,
+            self,  # type: ignore[invalid-argument-type] - TODO: Detect reason of ty error
+            directory=self.directory,  # type: ignore[unknown-argument] - TODO: Detect reason of ty error
         )
 
     def __enter__(self):  # noqa: D105
@@ -45,8 +48,8 @@ class ServerOnPytest(http.server.ThreadingHTTPServer):
 
     def __exit__(self, *args, **kwargs):  # noqa: D105
         print(args, kwargs)
-        super().__exit__()
         self.shutdown()
+        super().__exit__()  # type:ignore[missing-argument] - TODO: Detect reason of ty error
 
 
 @pytest.mark.sphinx("mini18n-html", testroot="e2e")
