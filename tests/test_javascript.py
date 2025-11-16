@@ -34,7 +34,10 @@ class ServerOnPytest(http.server.ThreadingHTTPServer):
 
     def finish_request(self, request, client_address):  # noqa: D102
         self.RequestHandlerClass(
-            request, client_address, self, directory=self.directory
+            request,
+            client_address,
+            self,  # type: ignore[invalid-argument-type] - TODO: Detect reason of ty error
+            directory=self.directory,  # type: ignore[unknown-argument] - TODO: Detect reason of ty error
         )
 
     def __enter__(self):  # noqa: D105
@@ -45,8 +48,8 @@ class ServerOnPytest(http.server.ThreadingHTTPServer):
 
     def __exit__(self, *args, **kwargs):  # noqa: D105
         print(args, kwargs)
-        super().__exit__()
         self.shutdown()
+        super().__exit__()  # type:ignore[missing-argument] - TODO: Detect reason of ty error
 
 
 @pytest.mark.sphinx("mini18n-html", testroot="e2e")
@@ -147,3 +150,31 @@ def test__select_language_dirhtml_sub(app: SphinxTestApp, page: Page):
         )
         time.sleep(0.5)
         assert page.url.endswith("/ja/sub/")
+
+
+@pytest.mark.sphinx(
+    "mini18n-dirhtml",
+    testroot="e2e-nested",
+)
+def test__nested_style(app: SphinxTestApp, page: Page):
+    app.build()
+    with ServerOnPytest(app.outdir) as server:  # type: ignore[arg-type]
+        url = f"http://localhost:{server.port}/"
+        page.goto(url)
+        time.sleep(0.5)
+        assert not page.url.endswith("/en/")
+        assert not page.context.cookies()
+        element = page.get_by_label("Language:")
+        element.select_option(label="ja")
+        element.evaluate(
+            "elm => elm.dispatchEvent(new Event('change', {bubbles: true}))"
+        )
+        time.sleep(0.5)
+        assert page.url.endswith("/ja/")
+        element = page.get_by_label("Language:")
+        element.select_option(label="en")
+        element.evaluate(
+            "elm => elm.dispatchEvent(new Event('change', {bubbles: true}))"
+        )
+        page.wait_for_load_state("networkidle")
+        assert page.url == f"http://localhost:{server.port}/"

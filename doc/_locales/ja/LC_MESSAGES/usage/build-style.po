@@ -1,0 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, Kazuya Takei
+# This file is distributed under the same license as the atsphinx-mini18n
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: atsphinx-mini18n 0.4.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-16 23:45+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kazuya Takei <myself@attakei.net>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../usage/build-style.rst:3
+msgid "Build style"
+msgstr ""
+
+#: ../../usage/build-style.rst:5
+msgid ""
+"When ``mini18n-*`` builder runs, it generates contents with two different"
+" style by :confval:`mini18n_build_style`."
+msgstr ""
+"``mini18n-*`` 系ビルダーによるビルドを実行するときに、:confval:`mini18n_build_style` "
+"によって2種類の異なる出力形態を選択できます。"
+
+#: ../../usage/build-style.rst:8
+msgid "Flat style"
+msgstr ""
+
+#: ../../usage/build-style.rst:10
+msgid "If configuration is not set, builder uses this."
+msgstr "設定がされていない場合に、ビルダーはこちらを使用します。"
+
+#: ../../usage/build-style.rst:12
+msgid ""
+"This style generates contents of all multiple languages into children "
+"folders. And root of build is custom ``index.html`` to redirect to "
+"selected language document."
+msgstr ""
+"このスタイルでは、各言語ごとのドキュメントが全てサブフォルダに出力します。同時にビルド先のトップには、選択中の言語に自動でリダイレクトするための特殊な"
+" ``index.html`` を配置します。"
+
+#: ../../usage/build-style.rst:16 ../../usage/build-style.rst:44
+msgid "Example"
+msgstr ""
+
+#: ../../usage/build-style.rst:39
+msgid "Nested style"
+msgstr ""
+
+#: ../../usage/build-style.rst:41
+#, fuzzy
+msgid ""
+"This style generates contents of default language into root of document "
+"multiple languages into children folders."
+msgstr ""
+"このスタイルでは、'default "
+"language'として設定している言語のドキュメントをビルド先のトップに出力します。他言語のドキュメントはサブフォルダ上に出力します。"
+
+#: ../../usage/build-style.rst:66
+msgid "Which style should you use?"
+msgstr ""
+
+#: ../../usage/build-style.rst:68
+msgid ""
+"If you manage document for single language, you should use \"Nested "
+"style\"."
+msgstr "もしすでに特定言語でドキュメントを運用しているのであれば、\"Nested style\"を使用したほうが良いでしょう。"
+
+#: ../../usage/build-style.rst:70
+msgid "Pros: Nested style does not change URL of current contents."
+msgstr "利点: 元からあったのコンテンツのURLを変更する必要がありません。"
+
+#: ../../usage/build-style.rst:71
+msgid "Cons: It cannot accept docname as same as language code (e.g. ``ja.rst`` )"
+msgstr "欠点: 言語コードと同じ名称のdocnameを使用することができません。（例: ``ja.rst`` ）"
+
+#: ../../usage/build-style.rst:73
+msgid ""
+"If you initialize new document and you have will to keep i18n contents, I"
+" recommend to use \"Flat style\"."
+msgstr "もしドキュメントを新規に運用する予定で、多言語対応を維持する意思があるのなら、\"Flat style\"の使用をお勧めします。"
+
+#: ../../usage/build-style.rst:76
+msgid "Pros: All contents have URL prefix used language code."
+msgstr "利点: 全てのコンテンツのURLの先頭に必ず言語コードが設定されます。"
+
+#: ../../usage/build-style.rst:77
+msgid ""
+"Cons: If you already manage document, you need to change URL of default "
+"language."
+msgstr "欠点: すでにドキュメントを運用している場合、'default language'として設定していた言語のURLを変更する必要があります。"
+

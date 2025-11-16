@@ -14,3 +14,4 @@ Please read to use ``atsphinx-mini18n`` on your documentation.
 
    setup
    configuration
+   build-style

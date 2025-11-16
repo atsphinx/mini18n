@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field, fields
 from pathlib import Path
 from subprocess import PIPE, run
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, ClassVar, Literal
 
 from jinja2 import Template
 from sphinx.builders.dummy import DummyBuilder
@@ -28,6 +28,30 @@ class BuildArgs:
     app: Sphinx
     builder: str
     lang: str
+    use_lang_dir: bool = True
+
+
+@dataclass
+class ExtensionConfig:
+    """Config for this extension from Sphinx config object."""
+
+    PREFIX: ClassVar[str] = "mini18n_"
+
+    build_style: Literal["flat", "nested"] = "flat"
+    default_language: str | None = None
+    support_languages: list[str] = field(default_factory=list)
+    basepath: str = "/"
+    select_lang_label: str = "Language:"
+
+    @classmethod
+    def from_sphinx(cls, config: Config) -> "ExtensionConfig":
+        """Create from Sphinx config object."""
+        kv = {
+            f.name: getattr(config, f"{cls.PREFIX}{f.name}")
+            for f in fields(cls)
+            if hasattr(config, f"{cls.PREFIX}{f.name}")
+        }
+        return cls(**kv)
 
 
 class Mini18nBuilderBase(DummyBuilder):
@@ -36,8 +60,22 @@ class Mini18nBuilderBase(DummyBuilder):
     name_prefix = "mini18n-"
 
     def finish(self):  # noqa: D102
-        self.finish_tasks.add_task(self.build_heading_content)
-        for lang in self.app.config.mini18n_support_languages:
+        config = ExtensionConfig.from_sphinx(self.config)
+        if config.build_style == "flat":
+            self.finish_tasks.add_task(self.build_heading_content)
+        if config.default_language:
+            self.finish_tasks.add_task(
+                build_i18_contents,
+                BuildArgs(
+                    self.app,
+                    self.name[len(self.name_prefix) :],
+                    config.default_language,
+                    config.build_style == "flat",
+                ),
+            )
+        for lang in config.support_languages:
+            if lang == config.default_language:
+                continue
             self.finish_tasks.add_task(
                 build_i18_contents,
                 BuildArgs(self.app, self.name[len(self.name_prefix) :], lang),
@@ -60,11 +98,14 @@ class Mini18nBuilderBase(DummyBuilder):
 
 def build_i18_contents(args: BuildArgs):
     """Run build for coufigured language."""
-    lang_out_dir = (
-        "/".join([args.app.outdir, args.lang])
-        if isinstance(args.app.outdir, str)
-        else args.app.outdir / args.lang  # type: ignore[unsupported-operator]
-    )
+    if args.use_lang_dir:
+        lang_out_dir = (
+            "/".join([args.app.outdir, args.lang])
+            if isinstance(args.app.outdir, str)
+            else args.app.outdir / args.lang  # type: ignore[unsupported-operator]
+        )
+    else:
+        lang_out_dir = args.app.outdir
     cmd = [
         "sphinx-build",
         "-b",
@@ -120,6 +161,7 @@ def bind_pathto_with_lang(
     doctree: nodes.document,
 ):
     """Add template functions into context."""
+    config = ExtensionConfig.from_sphinx(app.config)
 
     def pathto_with_lang(otheruri: str, lang: str) -> str:
         """Create path info to specified page and language.
@@ -128,9 +170,14 @@ def bind_pathto_with_lang(
         :param lang: Target language that is defined on ``mini18n_support_languages``.
         :returns: URL to page as absolute path.
         """
+        if config.build_style == "nested" and lang == config.default_language:
+            lang = ""
+        else:
+            lang = f"{lang}/"
         pathto = app.builder.get_target_uri(otheruri)
-        return f"{context['mini18n']['basepath']}{lang}/{pathto}"
+        return f"{context['mini18n']['basepath']}{lang}{pathto}"
 
+    print(app.config.language, config)
     context["pathto_with_lang"] = pathto_with_lang
     pass
 
@@ -140,6 +187,7 @@ def get_template_dir() -> str:  # noqa: D103
 
 
 def setup(app: Sphinx):  # noqa: D103
+    app.add_config_value("mini18n_build_style", "flat", "env")
     app.add_config_value("mini18n_default_language", None, "env")
     app.add_config_value("mini18n_support_languages", [], "env")
     app.add_config_value("mini18n_basepath", "/", "env")
