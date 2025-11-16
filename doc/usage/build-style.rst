@@ -39,7 +39,6 @@ Nested style
 ============
 
 This style generates contents of default language into root of document multiple languages into children folders.
-And root of build is custom ``index.html`` to redirect to selected language document.
 
 Example
 -------
