@@ -16,7 +16,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: './.github/actions/setup-aqua'
       - name: Set up workspace
         run: |
@@ -31,7 +31,7 @@ jobs:
         python-version: ['3.10', '3.11', '3.12', '3.13']
         workspace: ['locked', 'latest']
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: './.github/actions/setup-aqua'
       - name: Set up Python ${{ matrix.python-version }}
         run: 'echo ${{ matrix.python-version }} > .python-version'
@@ -50,7 +50,7 @@ jobs:
   doc-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: './.github/actions/setup-aqua'
       - name: 'Set up workspace'
         run: |
@@ -61,7 +61,7 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: './.github/actions/setup-aqua'
       - name: Build package
         run: |
