@@ -16,7 +16,7 @@ Example
 -------
 
 .. code-block:: python
-    :title: conf.py
+    :caption: conf.py
 
     mini18n_default_language = "en"
     mini18n_support_languages = ["en", "ja"]
@@ -44,7 +44,7 @@ Example
 -------
 
 .. code-block:: python
-    :title: conf.py
+    :caption: conf.py
 
     mini18n_default_language = "en"
     mini18n_support_languages = ["en", "ja"]
