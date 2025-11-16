@@ -1,3 +1,5 @@
+import os
+
 from atsphinx.mini18n import __version__ as version
 from atsphinx.mini18n import get_template_dir as get_mini18n_template_dir
 
@@ -20,6 +22,9 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # -- Options for i18n
 gettext_compact = False
+print(os.environ)
+if "SPHINX_LAST_TRANSLATOR" in os.environ:
+    gettext_last_translator = os.environ["SPHINX_LAST_TRANSLATOR"]
 locale_dirs = ["_locales"]
 
 # -- Options for HTML output
