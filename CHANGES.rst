@@ -1,3 +1,30 @@
+v0.5.0
+======
+
+:Date: 2025-11-17 (Asia/Tokyo)
+
+Features
+--------
+
+* Support "Nested style" output.
+
+  * Previously style is "Flat style".
+
+Others
+------
+
+* New version requires Python 3.10 and later.
+  Drop python 3.8 and 3.9 from support versions.
+* New version requires Sphinx 8.0 and later.
+* Update workspace.
+ 
+  * It uses aqua instead of mise.
+  * It uses latest actions in workflows.
+  * When it generate and update translations,
+    it refer environment variables for translator name.
+  * It uses ty instead of mypy.
+  * It updated dependency configurations.
+
 v0.4.1
 ======
 
