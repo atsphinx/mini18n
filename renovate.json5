@@ -3,7 +3,7 @@
   "extends": [
     "config:recommended",
     ":dependencyDashboard",
-    "github>aquaproj/aqua-renovate-config#2.8.2",
+    "github>aquaproj/aqua-renovate-config#2.9.0",
     "github>attakei/workspace-configs//renovate/lefthook",
     "github>attakei/workspace-configs//renovate/taskfile",
   ],
