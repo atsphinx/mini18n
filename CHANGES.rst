@@ -1,3 +1,13 @@
+v0.5.1
+======
+
+:Date: 2025-12-04 (Asia/Tokyo)
+
+Fixes
+-----
+
+* Remove unused print (maybe for debugging)
+
 v0.5.0
 ======
 
