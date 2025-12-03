@@ -177,7 +177,6 @@ def bind_pathto_with_lang(
         pathto = app.builder.get_target_uri(otheruri)
         return f"{context['mini18n']['basepath']}{lang}{pathto}"
 
-    print(app.config.language, config)
     context["pathto_with_lang"] = pathto_with_lang
     pass
 
