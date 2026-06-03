@@ -1,0 +1,22 @@
+version: 2
+
+formats: []
+
+python:
+  install:
+    - method: uv
+      command: sync
+      groups:
+        - docs
+
+build:
+  os: ubuntu-lts-latest
+  tools:
+    python: '3.10'
+  jobs:
+    install:
+      - uv sync --group=docs
+    build:
+      html:
+        - mkdir -p $READTHEDOCS_OUTPUT/html
+        - sphinx-build -b mini18n-dirhtml doc $READTHEDOCS_OUTPUT/html
